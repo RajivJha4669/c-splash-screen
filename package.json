@@ -2,10 +2,62 @@
   "name": "@rewaa/splash-screen",
   "version": "1.0.0",
   "description": "Enables to position loader at the bottom",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@rewaa/splash-screen",
+    "name": "@rewaa/splash-screen",
+    "escapedName": "@rewaa%2fsplash-screen",
+    "scope": "@rewaa",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "deprecated": false,
+  "devDependencies": {
+    "@capacitor/android": "^3.0.0",
+    "@capacitor/cli": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
+    "@capacitor/docgen": "0.0.18",
+    "@capacitor/ios": "^3.0.0",
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "~1.0.1",
+    "@ionic/swiftlint-config": "^1.1.2",
+    "eslint": "^7.11.0",
+    "prettier": "~2.3.0",
+    "prettier-plugin-java": "~1.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.32.0",
+    "swiftlint": "^1.0.1",
+    "typescript": "~4.1.5"
+  },
+  "peerDependencies": {
+    "@capacitor/core": "^3.0.0"
+  },
+  "prettier": "@ionic/prettier-config",
+  "publishConfig": {
+    "access": "public"
+  },
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
+  },
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Plugin/",
+    "CapacitorSplashScreen.podspec"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RajivJha4669/c-splash-screen.git"
@@ -15,6 +67,26 @@
     "Ionic",
     "Capacitor"
   ],
+  "scripts": {
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+    "clean": "rimraf ./dist",
+    "docgen": "docgen --api SplashScreenPlugin --output-readme README.md --output-json dist/docs.json",
+    "eslint": "eslint . --ext ts",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "prepublishOnly": "npm run build",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "publish:cocoapod": "pod trunk push ./CapacitorSplashScreen.podspec --allow-warnings",
+    "swiftlint": "node-swiftlint",
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin && cd ..",
+    "verify:web": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "swiftlint": "@ionic/swiftlint-config",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
   "author": "Rajiv Jha",
   "license": "ISC",
   "bugs": {
