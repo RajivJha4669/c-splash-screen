@@ -1,0 +1,24 @@
+{
+  "name": "@rewaa/splash-screen",
+  "version": "1.0.0",
+  "description": "Enables to position loader at the bottom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajivJha4669/c-splash-screen.git"
+  },
+  "keywords": [
+    "Splash-screen",
+    "Ionic",
+    "Capacitor"
+  ],
+  "author": "Rajiv Jha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RajivJha4669/c-splash-screen/issues"
+  },
+  "homepage": "https://github.com/RajivJha4669/c-splash-screen#readme"
+}
